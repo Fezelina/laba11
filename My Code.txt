@@ -1,0 +1,101 @@
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int binInt()
+{
+	cout << "Вывести на экран двоичное представление в памяти (все разряды) целого числа.\n\n";
+	int value; // Значение числа
+	cout << "Введите целое число: ";
+	cin >> value;
+	unsigned int order = sizeof(int) * 8;
+	unsigned int mask = 1 << order - 1;
+	for (int i = 1; i <= order; i++)
+	{
+		putchar(value & mask ? '1' : '0');
+		mask >>= 1;
+		if (i % 8 == 0 || i % order - 1 == 0) {
+			putchar(' ');
+		}
+
+	}
+	return 0;
+}
+
+
+int binFloat() {
+	cout << "Вывести на экран двоичное представление в памяти (все разряды) вещественного числа типа float.\n\n";
+	union {
+		int toolF;
+		float num_f; 
+	}pam;
+	cout << "Введите вещественное число: ";
+	cin >> pam.num_f;
+	unsigned int orderF = sizeof(float) * 8; 
+	unsigned int maskF = 1 << orderF - 1; 
+	for (int i = 1; i <= orderF; i++)
+	{
+		putchar(pam.toolF & maskF ? '1' : '0');
+		maskF >>= 1; 
+		if ((i % orderF - 9 == 0) || (i % orderF - 32 == 0) || (i % orderF - 1 == 0))
+		{
+			putchar(' ');
+		}
+	}
+	return 0;
+}
+
+
+int binDouble() {
+	cout << "Вывести на экран двоичное представление в памяти (все разряды) вещественного числа типа double.\n\n";
+	union {
+		int arrTool[2];
+		double numb_d;
+	}data;
+	cout << "Введите вещественное число: ";
+	cin >> data.numb_d;
+	unsigned int orderD = sizeof(int) * 8; 
+	unsigned int maskD = 1 << orderD - 1; 
+	for (int i = 1; i >= 0; i--)
+	{
+		maskD = 1 << orderD - 1;
+		for (int j = 1; j < orderD; j++)
+		{
+			putchar(data.arrTool[j] & maskD ? '1' : '0');
+			maskD >>= 1; 
+			if (((j % orderD == 1) && i) || ((j == 12) && i) || ((j % orderD) == 0 && i)) {
+				putchar(' ');
+			}
+		}
+
+	}
+	return 0;
+}
+
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	cout << "Вывод, сколько памяти (в байтах) отводится под различные типы данных:" << endl;
+	cout << "float: " << sizeof(float) << " байт" << endl;
+	cout << "bool: " << sizeof(bool) << " байт" << endl;
+	cout << "char: " << sizeof(char) << " байт" << endl;
+	cout << "short int: " << sizeof(short int) << " байт" << endl;
+	cout << "long int: " << sizeof(long int) << " байт" << endl;
+	cout << "int: " << sizeof(int) << " байт" << endl;
+	cout << "double: " << sizeof(double) << " байт" << endl;
+	cout << endl;
+	binInt();
+	cout << endl;
+	cout << setw(30);
+	cout << endl;
+	binFloat();
+	cout << endl;
+	cout << setw(30);
+	cout << endl;
+	binDouble();
+	cout << endl;
+	system("pause");
+	return 0;
+}
+
