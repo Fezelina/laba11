@@ -1,0 +1,56 @@
+#include "DD.h"
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+struct Teacher {
+    string name;
+    string surname;
+    string gender;
+    int age;
+    string degree;
+    string subject;
+    string email;
+    int groupNumber;
+};
+
+void printTeacherInfo(const Teacher& teacher) {
+    cout << "Teacher information:" << endl;
+    cout << "Name: " << teacher.name << endl;
+    cout << "Surname: " << teacher.surname << endl;
+    cout << "Subject: " << teacher.subject << endl;
+    cout << "Email: " << teacher.email << endl;
+    cout << "Group number: " << teacher.groupNumber << endl;
+    cout << endl;
+}
+
+void idz() {
+    Teacher baze[6] = {
+        {"Elena Petrovna", "Ivanova", "F", 45, "Professor", "Math", "elena55@mail.ru", 3373},
+        {"Valery Evgenievich", "Sinev", "M", 47, "assistant professor", "Prog", "sinev7@mail.ru", 3373},
+        {"Alexander Sergeevich", "Chirtsov", "M", 60, "PhD", "Phys", "cher6@mail.ru", 3373},
+        {"Olga Alexandrovna", "Kuznetsova", "F", 35, "Professor", "Phil", "kyxen@mail.ru", 3372},
+        {"Dmitry Alekseevich", "Lebedev", "M", 70, "Professor", "Hist", "leb@mail.ru", 3372},
+        {"Nikita Igorevich", "Petrov", "M", 33, "Professor", "Ecolog", "dmit@mail.ru", 3372}
+    };
+
+    string searchCriteria;
+    cout << "Enter search criteria (last name(Ivanova,Sinev,Chirtsov,Kuznetsova,Lebedev,Petrov)" << '\n' << "group number(3372, 3373) or subject(Math, Prog, Phys, Phil, Hist, Ecolog)): " << '\n';
+    cin >> searchCriteria;
+
+    bool found = false;
+    for (int i = 0; i < 6; i++) {
+        if (baze[i].surname == searchCriteria || to_string(baze[i].groupNumber) == searchCriteria || baze[i].subject == searchCriteria) {
+            printTeacherInfo(baze[i]);
+            found = true;
+        }
+    }
+
+    if (!found) {
+        cout << "Teacher not found." << endl;
+    }
+
+ 
+}

@@ -1,0 +1,41 @@
+#include <iostream>
+#include "DD.h"
+
+using namespace std;
+
+int main()
+{
+    setlocale(0, "");
+    char input;
+
+Menu: {
+    system("cls");
+    cout << "Введите номер(1,2):" << endl
+        << "Лаба 1" << endl
+        << "Идз" << endl;
+    }
+cin >> input;
+cin.ignore();
+switch (input) {
+
+case '1': {
+    system("cls");
+    lab1();
+    system("pause");
+    goto Menu;
+}
+case '2': {
+    system("cls");
+    idz();
+    system("pause");
+    goto Menu;
+}
+case '3': {
+    exit(0);
+}
+
+default: {
+    goto Menu;
+}
+}
+}

@@ -1,0 +1,9 @@
+#pragma once
+#include <iostream>
+
+void lab1();
+
+void idz();
+
+
+
